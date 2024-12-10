@@ -3,9 +3,7 @@ package ru.svsand.adventofcode.day8;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author sand <sve.snd@gmail.com>
@@ -19,7 +17,7 @@ public class ImpactOfSignalCalculator {
     private HashMap<Character, ArrayList<Coordinate>> groupAntennas = new HashMap<>();
 
     @Getter
-    private int countAntinodes = 0;
+    private HashSet<Coordinate> antinodes = new HashSet<Coordinate>();
 
     @AllArgsConstructor
     public class Coordinate {
@@ -27,6 +25,29 @@ public class ImpactOfSignalCalculator {
         private int x;
         @Getter
         private int y;
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+
+            if (obj == null || getClass() != obj.getClass())
+                return false;
+
+            Coordinate object = (Coordinate) obj;
+
+            return x == object.getX() && y == object.getY();
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, y);
+        }
+
+        @Override
+        public String toString() {
+            return x + " - " + y;
+        }
     }
 
     public ImpactOfSignalCalculator(char[][] mapOfAntennas) {
@@ -39,7 +60,13 @@ public class ImpactOfSignalCalculator {
             columnsCount = map[0].length;
     }
 
-    public void findAntennas() {
+    public int setAntinodes(int maxCount) {
+        findAntennas();
+        placeAntinodes(maxCount);
+        return getAntinodes().size();
+    }
+
+    private void findAntennas() {
         for (int row = 0; row < rowsCount; row++)
             for (int column = 0; column < columnsCount; column++)
                 if (map[row][column] != '.') {
@@ -50,44 +77,44 @@ public class ImpactOfSignalCalculator {
                 }
     }
 
-    public void setAntinodes() {
+    private void placeAntinodes(int maxCount) {
         for (Map.Entry<Character, ArrayList <Coordinate>> entry: groupAntennas.entrySet()) {
             Combinator combinator = new Combinator(entry.getValue().size());
             int[][] combinations = combinator.getCombinations();
+
             for (int[] combination: combinations) {
                 Coordinate antenna1 = groupAntennas.get(entry.getKey()).get(combination[0]);
                 Coordinate antenna2 = groupAntennas.get(entry.getKey()).get(combination[1]);
-                placeAntinode(antenna1, antenna2);
+
+                int dx = antenna2.getX() - antenna1.getX();
+                int dy = antenna2.getY() - antenna1.getY();
+
+                for (int i = 1; i <= maxCount ; i++) {
+                    Coordinate antinode = new Coordinate(antenna1.getX() - dx*i, antenna1.getY() - dy*i);
+                    if (!antinodeInBounds(antinode))
+                        break;
+                    placeAntinode(antinode);
+                }
+
+                for (int i = 1; i <= maxCount; i++) {
+                    Coordinate antinode = new Coordinate(antenna2.getX() + dx*i, antenna2.getY() + dy*i);
+                    if (!antinodeInBounds(antinode))
+                        break;
+                    placeAntinode(antinode);
+                }
             }
         }
     }
 
-    private void placeAntinode(Coordinate antenna1, Coordinate antenna2) {
-        Coordinate antinode1 = new Coordinate(
-                antenna1.getX() - (antenna2.getX() - antenna1.getX()),
-                antenna1.getY() - (antenna2.getY() - antenna1.getY())
-        );
+    private boolean antinodeInBounds(Coordinate antinode) {
+        return  antinode.getX() >= 0 && antinode.getX() < columnsCount &&
+                antinode.getY() >= 0 && antinode.getY() < rowsCount;
+    }
 
-        Coordinate antinode2 = new Coordinate(
-                antenna2.getX() + (antenna2.getX() - antenna1.getX()),
-                antenna2.getY() + (antenna2.getY() - antenna1.getY())
-        );
+    private void placeAntinode(Coordinate antinode) {
+        antinodes.add(antinode);
 
-        if (antinode1.getX() >= 0 && antinode1.getX() < columnsCount && antinode1.getY() >= 0 && antinode1.getY() < rowsCount) {
-            if (map[antinode1.getY()][antinode1.getX()] != '#')
-                countAntinodes++;
-
-            if (map[antinode1.getY()][antinode1.getX()] == '.')
-                map[antinode1.getY()][antinode1.getX()] = '#';
-
-        }
-
-        if (antinode2.getX() >= 0 && antinode2.getX() < columnsCount && antinode2.getY() >= 0 && antinode2.getY() < rowsCount) {
-            if (map[antinode2.getY()][antinode2.getX()] != '#')
-                countAntinodes++;
-
-            if (map[antinode2.getY()][antinode2.getX()] == '.')
-                map[antinode2.getY()][antinode2.getX()] = '#';
-        }
+        if (map[antinode.getY()][antinode.getX()] == '.')
+            map[antinode.getY()][antinode.getX()] = '#';
     }
 }

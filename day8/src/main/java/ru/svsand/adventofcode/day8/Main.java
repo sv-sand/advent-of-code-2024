@@ -11,10 +11,12 @@ public class Main {
         String fileName = args[0];
         FileParser parser = new FileParser();
         char[][] map = parser.read(fileName);
-        ImpactOfSignalCalculator calculator = new ImpactOfSignalCalculator(map);
-        calculator.findAntennas();
-        calculator.setAntinodes();
 
-        System.out.println("Unique locations count: " + calculator.getCountAntinodes());
+//        ImpactOfSignalCalculator calculator1 = new ImpactOfSignalCalculator(map);
+//        System.out.println("Unique locations count: " + calculator1.setAntinodes(1));
+
+        ImpactOfSignalCalculator calculator2 = new ImpactOfSignalCalculator(map);
+        System.out.println("Unique locations count (part2): " + calculator2.setAntinodes(1000));
+
     }
 }
