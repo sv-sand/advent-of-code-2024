@@ -11,11 +11,9 @@ public class Main {
         FileParser parser = new FileParser();
         ArrayList<Integer> diskMap = parser.read(fileName);
 
-        //while (true) {
-            FileSystem fs = new FileSystem(diskMap);
-            fs.createDiskBlocks();
-            fs.moveBlocks();
-            System.out.println("Filesystem checksum: " + fs.calculateSum());
-        //}
+        FileSystem fs = new FileSystem(diskMap);
+        fs.createDiskBlocks();
+        fs.moveBlocks();
+        System.out.println("Filesystem checksum: " + fs.calculateSum());
     }
 }
