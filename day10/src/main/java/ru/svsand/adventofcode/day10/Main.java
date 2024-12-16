@@ -8,9 +8,14 @@ public class Main {
         String fileName = args[0];
         FileParser parser = new FileParser();
         int[][] topographicMap = parser.read(fileName);
-        TrailsCounter counter = new TrailsCounter(topographicMap);
-        counter.findAllTrails();
 
-        System.out.println("Sum of the scores all trailheads: " + counter.getTrailCount());
+        TrailsCounterPart1 counter1 = new TrailsCounterPart1(topographicMap);
+        counter1.findAllTrails();
+        System.out.println("Sum of the scores all trailheads (part 1): " + counter1.getTrailCount());
+
+        TrailsCounterPart2 counter2 = new TrailsCounterPart2(topographicMap);
+        counter2.findAllTrails();
+        System.out.println("Sum of the scores all trailheads (part 2): " + counter2.getTrailCount());
+
     }
 }
