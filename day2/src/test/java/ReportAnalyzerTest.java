@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import ru.svsand.adventofcode2024.day2.ReportAnalyzer;
 
 class ReportAnalyzerTest {
 

@@ -2,7 +2,7 @@ package ru.adventofcode2024;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.svsand.adventofcode2024.ScoreCalculator;
+import ru.svsand.adventofcode2024.day1.ScoreCalculator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
