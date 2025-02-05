@@ -10,7 +10,7 @@ import java.util.*;
  * @since 08.12.2024
  */
 
-public class ImpactOfSignalCalculator {
+public class ImpactCalculator {
     private final char[][] map;
     private final int rowsCount;
     private final int columnsCount;
@@ -20,7 +20,7 @@ public class ImpactOfSignalCalculator {
     private final HashSet<Coordinate> antinodes = new HashSet<>();
 
     @AllArgsConstructor
-    public class Coordinate {
+    public static class Coordinate {
         @Getter
         private int x;
         @Getter
@@ -50,7 +50,7 @@ public class ImpactOfSignalCalculator {
         }
     }
 
-    public ImpactOfSignalCalculator(char[][] mapOfAntennas) {
+    public ImpactCalculator(char[][] mapOfAntennas) {
         map = mapOfAntennas;
         rowsCount = map.length;
 

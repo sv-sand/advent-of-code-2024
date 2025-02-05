@@ -11,6 +11,7 @@ public class TrailsCounterPart1 {
     private final int[][] map;
     private final int rowsCount;
     private final int columnCount;
+
     @Getter
     private int trailCount;
 
