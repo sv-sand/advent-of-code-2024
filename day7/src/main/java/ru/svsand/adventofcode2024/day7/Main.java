@@ -1,6 +1,7 @@
 package ru.svsand.adventofcode2024.day7;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,21 +9,11 @@ public class Main {
         System.out.println("Day 7: Bridge Repair");
 
         String fileName = args[0];
-        FileParser parser = new FileParser();
-        ArrayList<Equation> equations = parser.read(fileName);
+        List<String> strings = Reader.readFile(fileName);
+        ArrayList<Equation> equations = Parser.read(strings);
+        EquationCounter counter = new EquationCounter(equations);
 
-        long result = 0;
-        for (Equation equation: equations) {
-            if (equation.isValid())
-                result += equation.getResult();
-        }
-        System.out.println("Sum valid equations: " + result);
-
-        result = 0;
-        for (Equation equation: equations) {
-            if (equation.isValidWithConcatenation())
-                result += equation.getResult();
-        }
-        System.out.println("Sum valid equations with concatenation: " + result);
+        System.out.println("Sum valid equations: " + counter.sumOfValid());
+        System.out.println("Sum valid equations with concatenation: " + counter.sumOfValidWithConcatenation());
     }
 }
