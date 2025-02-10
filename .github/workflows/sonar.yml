@@ -19,4 +19,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run:
-        mvn -B verify sonar:sonar -Dsonar.projectKey=sv-sand_advent-of-code-2024 -Dsonar.organization=sv-sand -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./target/site/jacoco/jacoco.xml
+        mvn -B verify sonar:sonar \
+          -Dsonar.projectKey=sv-sand_advent-of-code-2024 -Dsonar.organization=sv-sand -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./target/site/jacoco/jacoco.xml
