@@ -17,6 +17,6 @@ public class Main {
         WordCounter counter = new WordCounter(matrix);
 
         logger.info("XMAS count: " + counter.calculateXmas());
-        logger.info("X-MAS count: " + counter.calculateXMas());
+        logger.info("X-MAS count: " + counter.calculateXXMas());
     }
 }

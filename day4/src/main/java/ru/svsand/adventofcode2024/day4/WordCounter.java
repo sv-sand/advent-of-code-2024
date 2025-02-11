@@ -36,7 +36,7 @@ public class WordCounter {
         return count;
     }
 
-    public int calculateXMas() {
+    public int calculateXXMas() {
         int count = 0;
 
         for (int y = 0; y < height - 2; y++) {
