@@ -1,11 +1,15 @@
 package ru.svsand.adventofcode2024.day1;
 
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println("Welcome to Advent of code 2024");
-        System.out.println("Day 1: Historian Hysteria");
+        Logger logger = LoggerFactory.getLogger(Main.class);
+
+        logger.info("Welcome to Advent of code 2024");
+        logger.info("Day 1: Historian Hysteria");
 
         Calculator distanceCalculator = new DistanceCalculator();
         Calculator scoreCalculator = new ScoreCalculator();
@@ -16,7 +20,7 @@ public class Main {
             scoreCalculator.addPointPair(parser.getValue1(), parser.getValue2());
         }
 
-        System.out.println("Full distance: " + distanceCalculator.calculate());
-        System.out.println("Similarity score: " + scoreCalculator.calculate());
+        logger.info("Full distance: " + distanceCalculator.calculate());
+        logger.info("Similarity score: " + scoreCalculator.calculate());
     }
 }

@@ -26,6 +26,6 @@ class WordCounterTest {
 
     @Test
     void calculateXMas() {
-        Assertions.assertEquals(9, counter.calculateXMas());
+        Assertions.assertEquals(9, counter.calculateXXMas());
     }
 }
