@@ -1,6 +1,8 @@
 package ru.svsand.adventofcode2024.day2;
 
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author sand <sve.snd@gmail.com>
@@ -9,8 +11,10 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println("Welcome to Advent of code 2024");
-        System.out.println("Day 2: Red-Nosed Reports");
+        Logger logger = LoggerFactory.getLogger(Main.class);
+
+        logger.info("Welcome to Advent of code 2024");
+        logger.info("Day 2: Red-Nosed Reports");
 
         int countSafeReports = 0;
         int countSafeReportsWithOneError = 0;
@@ -25,7 +29,7 @@ public class Main {
                 countSafeReportsWithOneError++;
         }
 
-        System.out.println("Count safe reports: " + countSafeReports);
-        System.out.println("Count safe reports with one error: " + countSafeReportsWithOneError);
+        logger.info("Count safe reports: " + countSafeReports);
+        logger.info("Count safe reports with one error: " + countSafeReportsWithOneError);
     }
 }

@@ -1,9 +1,14 @@
 package ru.svsand.adventofcode2024.day4;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Welcome to Advent of code 2024");
-        System.out.println("Day 4: Ceres Search");
+        Logger logger = LoggerFactory.getLogger(Main.class);
+
+        logger.info("Welcome to Advent of code 2024");
+        logger.info("Day 4: Ceres Search");
 
         String fileName = args[0];
         FileParser parser = new FileParser(fileName);
@@ -11,7 +16,7 @@ public class Main {
 
         WordCounter counter = new WordCounter(matrix);
 
-        System.out.println("XMAS count: " + counter.calculateXmas());
-        System.out.println("X-MAS count: " + counter.calculateXMas());
+        logger.info("XMAS count: " + counter.calculateXmas());
+        logger.info("X-MAS count: " + counter.calculateXMas());
     }
 }

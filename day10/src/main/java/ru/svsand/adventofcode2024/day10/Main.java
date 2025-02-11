@@ -1,11 +1,15 @@
 package ru.svsand.adventofcode2024.day10;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Welcome to Advent of code 2024");
-        System.out.println("Day 10: Hoof It");
+        Logger logger = LoggerFactory.getLogger(Main.class);
+
+        logger.info("Welcome to Advent of code 2024");
+        logger.info("Day 10: Hoof It");
 
         String fileName = args[0];
         List<String> strings = Reader.readFile(fileName);
@@ -13,11 +17,10 @@ public class Main {
 
         TrailsCounterPart1 counter1 = new TrailsCounterPart1(topographicMap);
         counter1.findAllTrails();
-        System.out.println("Sum of the scores all trailheads (part 1): " + counter1.getTrailCount());
+        logger.info("Sum of the scores all trailheads (part 1): " + counter1.getTrailCount());
 
         TrailsCounterPart2 counter2 = new TrailsCounterPart2(topographicMap);
         counter2.findAllTrails();
-        System.out.println("Sum of the scores all trailheads (part 2): " + counter2.getTrailCount());
-
+        logger.info("Sum of the scores all trailheads (part 2): " + counter2.getTrailCount());
     }
 }
